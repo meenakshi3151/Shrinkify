@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrinkify</title>
+</head>
+
+<body>
+    <H1>Welcome to <i>Shrinkify</i></H1>
+    <ol>
+      <li><a href="/"><u>Home</u></a></li>
+      <li><a href="/getAll"><u>All registered </u></a></li>
+    </ol>
+    <% if(locals.id) {%>
+        <p>URL Generated : http://localhost:8000/api/urls/<%=locals.id %>
+        </p>
+
+        <%} %>
+            <form method="POST" action="/generateurl">
+                <label>
+                    Enter your original Url
+                </label>
+                <input type="text" placeholder="enter url" name="redirecturl">
+                <button type="submit">Generate url </button>
+            </form>
+</body>
+
+</html>

@@ -1,8 +1,9 @@
 const   Url = require('../models/url')
 const {nanoid} = require('nanoid')
+
 const getShortId = async (req, res) => {
-    console.log(req.query)
-    const url = req.query.url
+    console.log(req.body)
+    const url = req.body.redirecturl
     if(!url) {
         return res.status(400).json("url is required")
     }
@@ -12,8 +13,11 @@ const getShortId = async (req, res) => {
         originalUrl : url,
         visitHistory : []
     })
-    return res.status(200).json({id:shortUrl})
+    return res.render("form",{
+        id:shortUrl
+    })
 }
+
 const updateVisitURL = async (req, res) => {
     try {
         console.log(req.params); 
@@ -34,6 +38,19 @@ const updateVisitURL = async (req, res) => {
         console.error("Error updating visit history:", error.message);
         res.status(500).json({ error: "An error occurred while updating visit history" });
     }
-};
+}
 
-module.exports = {getShortId, updateVisitURL}
+const getAllUrls = async (req,res)=>{
+    try {
+        console.log("Fetching all URLs");
+        const urls = await Url.find({}); 
+        console.log(urls)
+        return res.render('home', {
+            urlsArray : urls
+        })
+    } catch (error) {
+        console.error("Error fetching URLs:", error.message);
+        return res.status(500).json({ error: "An error occurred while fetching URLs" });
+    }
+}
+module.exports = {getShortId, updateVisitURL, getAllUrls}
