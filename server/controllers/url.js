@@ -29,7 +29,7 @@ const updateVisitURL = async (req, res) => {
         if (!updatedUrl) {
             return res.status(404).json({ message: "URL not found" });
         }
-        res.status(200).json({ message: "Visit history updated successfully", updatedUrl });
+        return res.redirect(updatedUrl.originalUrl);
     } catch (error) {
         console.error("Error updating visit history:", error.message);
         res.status(500).json({ error: "An error occurred while updating visit history" });

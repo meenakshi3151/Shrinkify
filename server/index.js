@@ -12,4 +12,7 @@ app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
 })
 app.use('/',urlRoute)
-
+// now we want to have the ui so for this we an make a route and add h1 tag and content 
+// in it 
+/* There are some templating engins for handling html ui code in backend 
+that are : pugjs EJS */
