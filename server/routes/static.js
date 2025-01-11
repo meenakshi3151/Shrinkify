@@ -1,5 +1,6 @@
 const express= require('express')
 const router = express.Router()
-const {home} = require('../controllers/static')
+const {home, signup} = require('../controllers/static')
 router.get('/',home)
-module.exports= router
+router.get('/signup',signup)
+module.exports=  router

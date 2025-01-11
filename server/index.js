@@ -5,6 +5,7 @@ const  urlRoute = require('./routes/url')
 const process = require('process');
 const dotenv = require('dotenv')
 const staticRoutes = require('./routes/static')
+const userRoutes = require('./routes/user')
 const {connectDB}=require('./db');
 const path = require('path');
 connectDB()
@@ -16,8 +17,9 @@ app.use(express.urlencoded({extended:false}))
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
 })
-app.use('/',urlRoute)
+app.use('/url',urlRoute)
 app.use('/',staticRoutes)
+app.use('/user',userRoutes)
 
 // now we want to have the ui so for this we an make a route and add h1 tag and content 
 // in it 

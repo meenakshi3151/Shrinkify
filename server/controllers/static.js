@@ -1,4 +1,9 @@
 const home = async (req,res)=>{
     return res.render("form")
 }
-module.exports= {home} 
+
+const signup = async (req,res) =>{
+    return res.render("signup")
+}
+
+module.exports= {home, signup} 
