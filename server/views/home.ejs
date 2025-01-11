@@ -9,8 +9,7 @@
   <body>
     <h1>Shrinkify</h1>
     <ol>
-        <li><a href="/"><u>Home</u></a></li>
-        <li><a href="/getAll"><u>All registered </u></a></li>
+        <li><a href="/home"><u>Home</u></a></li>
       </ol>
     <% urlsArray.forEach(url=>{ %>
       <li><%= url.shortUrl %> <%=url.originalUrl %>        <%=url.visitHistory.length%></li>

@@ -6,4 +6,8 @@ const signup = async (req,res) =>{
     return res.render("signup")
 }
 
-module.exports= {home, signup} 
+const login = async(req,res)=>{
+    return res.render("login")
+}
+
+module.exports= {home, signup,login} 
