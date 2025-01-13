@@ -1,5 +1,6 @@
 const User = require('../models/user')
-
+const {setUser} = require('../service/auth')
+const {v4 : uuidv4}  = require('uuid')
 const registerUser = async (req, res) => {
     try {
         console.log(req.body);
@@ -32,7 +33,11 @@ const loginUser = async (req, res) => {
         return res.render('login', {
             error: "Invalid data"
         })
+    const sessionId = uuidv4()
+    console.log(sessionId+" "+user)
+    setUser(sessionId,user)
+    res.cookie("uid",sessionId)
     return res.redirect('/home')
-
 }
+
 module.exports = { registerUser, loginUser }

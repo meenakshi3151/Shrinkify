@@ -7,11 +7,13 @@ const getShortId = async (req, res) => {
     if(!url) {
         return res.status(400).json("url is required")
     }
+    console.log(req.user)
     const shortUrl = nanoid(8)
     await Url.create({
         shortUrl : shortUrl,
         originalUrl : url,
-        visitHistory : []
+        visitHistory : [],
+        createdBy : req.user._id
     })
     return res.render("form",{
         id:shortUrl
@@ -41,9 +43,13 @@ const updateVisitURL = async (req, res) => {
 }
 
 const getAllUrls = async (req,res)=>{
+    if(!req.user){
+        return res.redirect("/login")
+    }
     try {
         console.log("Fetching all URLs");
-        const urls = await Url.find({}); 
+        console.log(req.user)
+        const urls = await Url.find({createdBy:req.user._id}); 
         console.log(urls)
         return res.render('home', {
             urlsArray : urls

@@ -13,7 +13,11 @@ const urlModel = mongoose.Schema(
         visitHistory: {
             type: [Date],
             default: [],
-        }        
+        },
+        createdBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }      
     },
     {timestamp: true}
 )
